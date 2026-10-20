@@ -1,0 +1,14 @@
+# Kernel internals and runtime data (ROUND5 §3)
+runtime/
+runs/
+product/data/
+.codex/
+__pycache__/
+*.pyc
+# Personal to each installation: the kernel project is public (Kernel 0.45.6)
+archive/
+knowledge/shared/
+knowledge/background.md
+knowledge/user-profile.md
+knowledge/domain-brief.md
+knowledge/archive/

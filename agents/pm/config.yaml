@@ -1,0 +1,25 @@
+schema_version: agent-config.v2
+agent_id: pm
+agent_key: project:kernel:manager
+kind: manager
+status: active
+display_name: Project Agent
+role: role.md
+harness:
+  provider: openai
+  context_policy: max
+  reasoning_effort: medium
+  timeout_seconds: 1800
+tools:
+- get_authorized_workspace
+- list_authorized_tree
+- read_authorized_file
+- list_recent_history
+- write_candidate_file
+- delete_candidate_file
+- volcengine_model_status
+- volcengine_generate
+- volcengine_ocr
+- read_project_document
+- vault_list
+- vault_read_text

@@ -1,0 +1,28 @@
+schema_version: project.v2
+project_id: kernel
+display_name: Assistant Kernel
+purpose: 维护执行内核及项目管理：创建、路由、公共模板和确认背景
+layout_version: 2
+status: active
+capabilities:
+- routing
+- project_management
+- shared_context
+- kernel_maintenance
+- git_delivery
+delivery: git-repo
+share_with_kernel: improvements
+multi_agent:
+  enabled: true
+  max_concurrent_subagents: 3
+repository: /home/v/AI/assistant-kernel
+main_branch: main
+validation:
+  command: PYTHONPATH=src /home/v/AI/assistant-data/runtime/kernel-venvs/test/bin/python
+    -m pytest tests -q -p no:cacheprovider
+  timeout_seconds: 1800
+  pass_env:
+  - ASSISTANT_POSTGRES_*
+release_note: "kernel 改动（提交 {commit}）已合并到 main。需要上线时请在 H:\\AI\assistant-kernel 执行\
+  \ .\\scripts\\deploy.ps1。"
+map_path: docs/map.yaml

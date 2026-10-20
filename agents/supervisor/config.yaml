@@ -1,0 +1,14 @@
+schema_version: agent-config.v2
+agent_id: supervisor
+agent_key: project:kernel:supervisor
+kind: supervisor
+status: active
+display_name: Goal Supervisor
+role: role.md
+harness:
+  provider: openai
+  context_policy: max
+  reasoning_effort: medium
+  timeout_seconds: 300
+  model: gpt-5.6-sol
+tools: []
