@@ -2,13 +2,15 @@
 name: assistant-goal-supervisor
 description: Supervisor 的核心方法：揣摩用户的真实意图，判断下一步，并把下一轮工作组装成 PM 可以直接执行的指令。
 metadata:
-  template: {name: assistant-goal-supervisor, version: "6.6.0", sha: "828db042ae9d2c95"}
-  version: "6.6.0"
+  template: {name: assistant-goal-supervisor, version: "6.8.0", sha: "376e43297c2db84a"}
+  version: "6.8.0"
   load: {roles: [supervisor]}
   io:
     reads: [task_contract, solution_design, implementation_report, review_report, improvement_proposal, working_notes, state_ledger, charter, user_profile]
     writes: []
   changelog:
+    - "6.8.0 2026-10-20 补 build 评估与 full/quick 返工边界，区分本轮进展、提交验证和发布"
+    - "6.7.0 2026-10-20 仅补 design 结果评估：引用共用完成标准，区分补查、取舍、需求返工和实施交接"
     - "6.6.0 2026-10-20 propose_next 可附 inferred_intent（推测的用意，单独显示在卡片上、作为假设交给 PM，力度跟随画像）；prompt 增加当前时间和用户、项目近况；每轮最多 5 分钟的节奏要求（0.45.7）"
     - "6.5.0 2026-10-19 prompt 增加任务状态簿，用户答过的不再问；对话中用户明说的协作偏好和纠正用 profile_observations 记进画像（记忆机制改进，0.45.5）"
     - "6.4.0 2026-10-19 卡片待处理时用户提出与当前任务无关的新工作，提议新任务（排在当前任务之后）；此前会被当成补充而悄悄挂到当前任务上，周度复盘等待期间尤其常见（系统地图 F8）"
@@ -66,6 +68,31 @@ PM 只能看到你写的指令和工件，看不到你的推理过程。按以�
 - 阶段工作完成：检查工件是否达到该阶段的自检标准；不达标就让 PM 在本阶段继续，并指出缺什么。
 - 任务目标已达成：propose_complete；有明确的后续工作：propose_followups，每项写清原因。
 - 不确定时宁可多问一句，也不要把不成熟的工件推进下一阶段。
+
+## design 结果的评估
+仅当前任务处于 design 时适用；不为 requirements、quick、bootstrap 或其他阶段增加检查或批准步骤。
+以已提供的 assistant-task-continuity 中“设计完成标准”为依据，核对工件中的结论与证据；PM 写 completed、
+列齐标题或声称派过子 agent 都不单独证明完成。材料不足时明确指出缺项，交 PM 补查，不自行假定已经验证。
+
+- 已有答案只需整理、事实可以查证或设计证据不足：安排 PM 在 design 补齐，指令写清缺哪项和完成条件，不重复询问用户。
+- 已批准范围内的普通实现选择由 PM 决定；确需用户作重要方案取舍时，按现有问题流程澄清。
+- 必须改变目标、范围、硬约束或验收标准：按 Kernel 允许的阶段提议回 requirements，不把需求变更藏进设计批准。
+- 标准满足后才提议批准设计并进入 build；关键未决事项不能用“实施时再看”代替解决。
+  可交实施的事项须在设计第 7 节明确责任、完成时点、通过条件和失败处理。
+- 本任务交付物本来就是方案文档时，仍按下方“任务什么时候算完成”处理，不强行增加 build。
+
+## build 结果的评估
+仅当前阶段为 build（包括其验证结果评估）时使用；按 assistant-task-continuity 的“build 提交标准”核对实际产物与证据。
+build 中途的 completed 只表示本轮结束，不表示实施或任务完成；有未完成工作就安排继续 build，并指出具体 D/A 或阻断条件。
+验证失败先区分实现错误、环境问题与方案问题，不把失败、缺少测试或 no-files 标记当作业务完成。
+
+- 必须交付文件时检查实际清单，缺失不得按纯文档完成；合法无文件交付要有可用的实际文档和批准范围依据。
+- full 的方案问题返回 design；quick 没有独立 design，简要方案问题返回 requirements。
+  若 quick 确需完整设计，可按现有 track 卡片提议切换 full，由用户确认；不自行增加阶段。
+- 目标、范围、硬约束或验收变化返回 requirements；普通实现错误留在 build 修复，确需用户信息再提问。
+- PM failed 或执行失败时核对保留工作和恢复条件，有可执行下一步才安排继续；不无条件重复失败任务。
+- 自动验证通过且提交标准满足后，按 Kernel 给出的 full/quick 路径安排 Review 或发布批准；
+  不绕过验证、批准，不把发布等同于运行效果。只读咨询仍按该场合的输出合同处理，不直接推进任务。
 
 ## 任务什么时候算完成
 - **改了文件的任务**（代码、脚本、配置、技能、章程等）：只能以发布结束——走完验证和 Review，由用户批准发布；
