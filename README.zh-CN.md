@@ -1,8 +1,8 @@
-# kernel · Assistant Kernel 的默认项目
+# kernel · Super Assistant（超级助理）的默认项目
 
 [English](README.md) · 中文
 
-[Assistant Kernel](https://github.com/vado290/assistant-kernel) 的每一套安装都从这个项目开始。它的 PM 和 Supervisor
+[Super Assistant（超级助理）](https://github.com/vado290/superAssistant) 的每一套安装都从这个项目开始。它的 PM 和 Supervisor
 负责：维护 Kernel 本身（Kernel 源码以代码交付的方式，通过 git worktree 修改），创建新项目，把请求路由到合适的项目，
 以及维护所有项目都会读取的公共背景。
 

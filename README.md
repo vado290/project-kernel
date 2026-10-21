@@ -1,8 +1,8 @@
-# kernel · the default project of Assistant Kernel
+# kernel · the default project of Super Assistant
 
 English · [中文](README.zh-CN.md)
 
-This is the project every installation of [Assistant Kernel](https://github.com/vado290/assistant-kernel) starts
+This is the project every installation of [Super Assistant](https://github.com/vado290/superAssistant) (the Assistant Kernel) starts
 with. Its PM and Supervisor maintain the Kernel itself (its source is delivered as code through git worktrees),
 create new projects, route requests to the right project, and look after the shared background that all projects
 read.
