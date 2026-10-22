@@ -2,7 +2,7 @@
 name: assistant-solution-design
 description: 设计阶段：依据已批准的需求，设计从输入到可用结果的完整方案，核实关键依赖，写清实施交接和验收方法。
 metadata:
-  template: {name: assistant-solution-design, version: "2.3.1", sha: "dde0e8b52dc55ccf"}
+  template: {name: assistant-solution-design, version: "2.3.1", sha: "dde0e8b52dc55ccf", content_sha: "c4840fe318bfbf2c4f6f88489d2130afa9990dac60eecd23c99723114ae299cf"}
   version: "2.3.1"
   load: {roles: [pm], stages: [design]}
   io:

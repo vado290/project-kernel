@@ -2,7 +2,7 @@
 name: assistant-requirements
 description: 需求阶段的工作方法：先摸清用户所在组织、行业和项目现状，再分轮用多问题卡片收集和澄清需求、化解矛盾、补充用户没想到的需求，最后提交需求文档并存档背景信息。
 metadata:
-  template: {name: assistant-requirements, version: "3.2.4", sha: "f51d92460a43fa9a"}
+  template: {name: assistant-requirements, version: "3.2.4", sha: "f51d92460a43fa9a", content_sha: "5f9a8217e5af85f51f3408b4e1900763ff7dd466653ef30f8ea81d57fafd1600"}
   version: "3.2.4"
   load: {roles: [pm], stages: [requirements]}
   io:

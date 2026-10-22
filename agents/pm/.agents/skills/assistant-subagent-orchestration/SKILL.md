@@ -2,10 +2,11 @@
 name: assistant-subagent-orchestration
 description: 把独立、阅读量大或可并行的临时工作派给子 agent：何时派、怎样写子 agent 的任务说明、怎样处理子 agent 提出的问题、怎样核对和汇总结果。
 metadata:
-  template: {name: assistant-subagent-orchestration, version: "2.3.0", sha: "881c48754babc62e"}
-  version: "2.3.0"
+  template: {name: assistant-subagent-orchestration, version: "2.4.0", sha: "39dadb4d1ad47b87", content_sha: "fe4b7d8e4c34513c6c4cad5fcb431bdd9d56b4edb91bdb325f01ac7e39695d98"}
+  version: "2.4.0"
   load: {roles: [pm], stages: [requirements, design, build, review, evolution]}
   changelog:
+    - "2.4.0 2026-10-21 增加仅 Review 适用的委派条件、共同基线和汇总责任"
     - "2.3.0 2026-10-20 补 build 分工：文件候选由 PM 串行登记，Git 按写集实施；明确集成和失败交接"
     - "2.2.0 2026-10-20 仅补 design 的委派条件、只读调查与结果验收；其他阶段沿用原定义"
     - "2.1.1 2026-10-18 技能改为每个 agent 一个平级目录 agents/<agent>/.agents/skills/（ROUND5 R5.1）"
@@ -96,6 +97,15 @@ metadata:
 适合：彼此独立、可以并行的调查（行业资料、竞品、现有系统盘点）；阅读量大、会挤占你上下文的代码或文档阅读；
 独立的检查（反例审查、测试分析）；实施阶段中写集互不重叠的多个文件。
 不适合：需要用户决定的事；几步就能做完的小事；前后依赖、必须串行的步骤；目标还说不清的事。
+
+## Review 阶段的分工
+仅 Review 使用本节。存在可独立核对的专业领域、跨模块影响或需要独立复核的高风险项，且收益值得派发与汇总成本时委派；
+普通集中审查由 PM 完成，不按文件数量强制派发，也不复用参与该项实施的子 agent 充当独立审查者。
+复用 codebase-survey、counterexample-review 或临时只读任务。每份任务带同一 Kernel 审查基线、固定 bundle/commit、
+具体可读位置、R/A/D 范围、要核对的问题和证据标准；子 agent 只能交回发现、证据、限制与未覆盖项，不修改产物或批准发布。
+PM 核实关键证据，合并覆盖，检查跨模块接口并解决矛盾；多份“通过”不能代替整体验收。基线变化后重新核对受影响结论。
+普通委派失败可由 PM 接手；有效验收要求独立检查而未完成时不能算通过。缺证用 changes；执行能力阻断才用 failed，
+按 assistant-release-audit 记录恢复条件，不无条件重复派发，也不假设子 agent 会跨回合存活。
 
 ## 任务说明的写法（每个子 agent 一份，按此结构）
 ```

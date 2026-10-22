@@ -2,7 +2,7 @@
 name: assistant-triage-routing
 description: 分诊与路由：判断用户的一条消息是闲聊、本项目的工作，还是属于另一个已有项目，并据此直接回答、开始任务或转交。
 metadata:
-  template: {name: assistant-triage-routing, version: "1.0.0", sha: "5098828b18e84a78"}
+  template: {name: assistant-triage-routing, version: "1.0.0", sha: "5098828b18e84a78", content_sha: "4b7ef1fdd47c6192b8bfa55e90b5d767799a241f39399225c52107e110db5f4e"}
   version: "1.0.0"
   load: {roles: [pm, supervisor], purposes: [triage, consult]}
   changelog:

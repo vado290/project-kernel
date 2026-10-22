@@ -2,7 +2,7 @@
 name: assistant-evolution-review
 description: 周度复盘（运营阶段的核心方法，每周自动或 /evolve 触发）：复核上期改进的效果，从运行记录和变更流水中发现问题、找到根因，提出带预期效果和衡量方法的改进建议，闭合"改进→记录→复核"的循环。
 metadata:
-  template: {name: assistant-evolution-review, version: "2.1.0", sha: "2c2bd04863c595a7"}
+  template: {name: assistant-evolution-review, version: "2.1.0", sha: "2c2bd04863c595a7", content_sha: "b1eefe837cfd46f1076c05d33533bb54aef52a42a284af805b520591cc83c9fe"}
   version: "2.1.0"
   load: {roles: [pm], stages: [evolution]}
   io:

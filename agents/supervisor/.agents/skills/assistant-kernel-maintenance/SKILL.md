@@ -2,7 +2,7 @@
 name: assistant-kernel-maintenance
 description: kernel 项目改造自身时的额外规则：运行中的 kernel 与被修改的代码严格分开，改动要守住核心原则并有测试保障，部署由用户执行。
 metadata:
-  template: {name: assistant-kernel-maintenance, version: "1.0.0", sha: "16e96efe64d2383a"}
+  template: {name: assistant-kernel-maintenance, version: "1.0.0", sha: "16e96efe64d2383a", content_sha: "e77e426971c22535470bfa2bcfb0b4eb3e2c72e968ea5c91a83f78cf9b84dc19"}
   version: "1.0.0"
   load: {roles: [pm, supervisor], stages: [design, build, review, evolution], purposes: [evaluate], capabilities: [kernel_maintenance]}
   changelog:

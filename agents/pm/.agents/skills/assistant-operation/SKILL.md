@@ -2,7 +2,7 @@
 name: assistant-operation
 description: 运营健康检查清单（复盘时按需读取）：项目上线后的产物是否在正常运行——作业和服务、数据是否按时更新、产出有没有人看、用户反馈；给复盘提供"运行得怎么样"的事实。
 metadata:
-  template: {name: assistant-operation, version: "3.0.0", sha: "d8940ff70d038960"}
+  template: {name: assistant-operation, version: "3.0.0", sha: "d8940ff70d038960", content_sha: "1a474c13d142ba029ad73737fae8af7b0cbdfa165c24a16997a13354d28d6b20"}
   version: "3.0.0"
   load: {roles: [pm], stages: [evolution], on_demand: true}
   io:

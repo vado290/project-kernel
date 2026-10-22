@@ -2,10 +2,11 @@
 name: assistant-task-continuity
 description: 所有工件（章程、需求、行业速写、设计、实施报告、Review 报告、改进建议）的固定章节和编号规则；PM 写工件、Supervisor 读工件时都以此为准。
 metadata:
-  template: {name: assistant-task-continuity, version: "2.9.0", sha: "153e50f624cd5d4e"}
-  version: "2.9.0"
+  template: {name: assistant-task-continuity, version: "2.10.0", sha: "b1d01bfe1e878e20", content_sha: "5beee43222c5035fc84cb1691f64c076bac4d5dd5086b677dc13136de53243c0"}
+  version: "2.10.0"
   load: {roles: [pm, supervisor]}
   changelog:
+    - "2.10.0 2026-10-21 仅补 Review 输入、复审闭环和发布交接，保留其他阶段格式"
     - "2.9.0 2026-10-20 补 build 的进度、证据和提交检查，将设计遗留事项接入原 D/A 与报告；不新增工件或状态"
     - "2.8.0 2026-10-20 仅补 design 文档的交接内容和 PM/Supervisor 共用完成标准，保留其他工件与阶段规则"
     - "2.7.0 2026-10-20 背景信息存档改存 knowledge/background.md，章程文件不再被 Kernel 追加内容（0.45.6）"
@@ -155,6 +156,17 @@ PM 提交 ready_for_validation 前与 Supervisor 评估 build 结果共用；这
 
 ### Review 报告（review_report）
 1 结论（pass / changes）· 2 逐条核对（每个 A：证据 → 通过 / 不通过）· 3 必须修改 · 4 建议修改 · 5 发布风险
+
+仅 full 交付任务的 Review 使用以下补充；不为 quick、bootstrap、evolution 增加阶段或门槛。
+输入复用有效需求/设计、实施报告、Kernel 验证及固定交付清单；还应能找到未验证事项、设计遗留项与上轮必修问题。
+在原五节内按任务规模简写，不另建交接文件：
+- 第 1 节：所审查版本、实际交付对象和结论适用范围；技术基线由 Kernel 绑定，不手工编造 SHA。
+- 第 2 节：关联 R/A/D 的证据、通过/不通过/未验证；复审注明必修问题的关闭证据和受影响回归。
+- 第 3 节：必修问题的触发条件、影响、证据位置、修复或补证的验收条件。
+- 第 4 节：不阻塞本次批准范围的建议，不把新愿望混入必须修改。
+- 第 5 节：发布前置条件、剩余风险、有效需求约定的后续观察和接收方；有待完成的本次必需条件不能判 pass。
+working_notes 只保留续轮的证据引用、阻塞及下一步；旧报告/笔记不能覆盖 Kernel 的基线失效结论。
+Review → Supervisor 交接明确：通过可申请发布、实施问题回 build、方案/需求问题回对应阶段、能力阻断及恢复条件。
 
 ### 改进建议（improvement_proposal）
 0 本期概况 · 1 上期效果复核（YAML，格式见输出要求）· 2 发现的问题（F：现象和证据）·

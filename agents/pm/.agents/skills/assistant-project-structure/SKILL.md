@@ -2,7 +2,7 @@
 name: assistant-project-structure
 description: 在创建或迁移Project级Agent、Schema、Skill、脚本、MCP、Workflow或Service时，按当前layout放置资源并补齐必要配套文件；普通内容编辑不使用。
 metadata:
-  template: {name: assistant-project-structure, version: "1.1.1", sha: "d592a8f83aa5b452"}
+  template: {name: assistant-project-structure, version: "1.1.1", sha: "d592a8f83aa5b452", content_sha: "6e9a2aa5c0abf6a1e2cd25458e384567bfb7fb05ea123a8854390c242a263f0b"}
   version: "1.1.1"
   load: {roles: [pm], stages: [design, build], on_demand: true}
   changelog:

@@ -2,7 +2,7 @@
 name: assistant-workflow-design
 description: 设计会自动运行的产物：定时脚本、产物内的 agent、常驻服务怎样拆分、怎样声明到 jobs.yaml、怎样保证可重复运行和故障恢复；产物需要定时或长期运行时使用。
 metadata:
-  template: {name: assistant-workflow-design, version: "2.0.2", sha: "cc28e172759b8fe1"}
+  template: {name: assistant-workflow-design, version: "2.0.2", sha: "cc28e172759b8fe1", content_sha: "ae2c94259f4a6d44788dc8c2a1368b418eef84b079575c05ecdd7c1894cc8cdc"}
   version: "2.0.2"
   load: {roles: [pm], stages: [design, build], on_demand: true}
   io:

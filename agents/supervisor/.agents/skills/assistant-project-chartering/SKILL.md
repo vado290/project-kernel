@@ -2,7 +2,7 @@
 name: assistant-project-chartering
 description: 新建项目时，与用户商量并写出项目章程（用途、目标、背景、范围、路由信息）和创建参数（ID、名称、能力、交付方式、角色要点），用户批准后由 Kernel 创建项目。
 metadata:
-  template: {name: assistant-project-chartering, version: "1.1.0", sha: "e0e13e798ecf983d"}
+  template: {name: assistant-project-chartering, version: "1.1.0", sha: "e0e13e798ecf983d", content_sha: "955e88ce6d598cf0d1690c281bb15e1c6f385aaaa4b1ed73ffc26b943084effe"}
   version: "1.1.0"
   load: {roles: [pm, supervisor], task_kinds: [bootstrap], capabilities: [project_management]}
   changelog:

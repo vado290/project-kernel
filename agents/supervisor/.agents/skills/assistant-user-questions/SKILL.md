@@ -2,7 +2,7 @@
 name: assistant-user-questions
 description: 设计和整理给用户的问题（多问题卡片）：何时问、问什么、怎么问才能让用户快速答准；PM 出题和 Supervisor 转述都按此执行。
 metadata:
-  template: {name: assistant-user-questions, version: "1.0.0"}
+  template: {name: assistant-user-questions, version: "1.0.0", sha: "ada9a23192492b68", content_sha: "01b1a7f12171284ec9ad920200cca7165034b76414897cca47bf78e769cd1f84"}
   version: "1.0.0"
   load: {roles: [pm, supervisor]}
   changelog:

@@ -2,13 +2,14 @@
 name: assistant-goal-supervisor
 description: Supervisor 的核心方法：揣摩用户的真实意图，判断下一步，并把下一轮工作组装成 PM 可以直接执行的指令。
 metadata:
-  template: {name: assistant-goal-supervisor, version: "6.8.0", sha: "376e43297c2db84a"}
-  version: "6.8.0"
+  template: {name: assistant-goal-supervisor, version: "6.9.0", sha: "f8075812b149cb0b", content_sha: "0056e65e88875633119ba5328b1968d34ac9482a0a0eccbacca0a3eb4c6a2b86"}
+  version: "6.9.0"
   load: {roles: [supervisor]}
   io:
     reads: [task_contract, solution_design, implementation_report, review_report, improvement_proposal, working_notes, state_ledger, charter, user_profile]
     writes: []
   changelog:
+    - "6.9.0 2026-10-21 补 full Review 基线、旧报告/发布卡片失效恢复及发布重试边界"
     - "6.8.0 2026-10-20 补 build 评估与 full/quick 返工边界，区分本轮进展、提交验证和发布"
     - "6.7.0 2026-10-20 仅补 design 结果评估：引用共用完成标准，区分补查、取舍、需求返工和实施交接"
     - "6.6.0 2026-10-20 propose_next 可附 inferred_intent（推测的用意，单独显示在卡片上、作为假设交给 PM，力度跟随画像）；prompt 增加当前时间和用户、项目近况；每轮最多 5 分钟的节奏要求（0.45.7）"
@@ -94,8 +95,22 @@ build 中途的 completed 只表示本轮结束，不表示实施或任务完成
 - 自动验证通过且提交标准满足后，按 Kernel 给出的 full/quick 路径安排 Review 或发布批准；
   不绕过验证、批准，不把发布等同于运行效果。只读咨询仍按该场合的输出合同处理，不直接推进任务。
 
+## Review 结果与发布申请的评估
+仅 full 交付任务的 Review 及其发布申请/重试使用本节，其他阶段与 quick、bootstrap、evolution 保持既有规则。
+按 assistant-task-continuity 的 Review 交接标准核对覆盖、证据、必修项和发布前置条件，不能只看 PM 的 completed/pass。
+Kernel 显示基线缺失或失效时，旧报告仅供参考；当前仍在 review 就安排同阶段复审，不自动补签或反复提议发布。
+审查有效且本次必需事项完成才能申请用户批准；pass、用户批准、发布完成和真实运行效果分别判断。
+实施缺陷回 build，设计/需求缺口回对应阶段；缺证交 PM 补证，能力故障写清恢复条件后安排继续，不无条件重试。
+
+当前发布卡片审批被拒绝且提示审查过期时，用户可点“不同意”回到你这里；核对 Kernel 的具体原因并安排复审。
+已替换/已处理的旧卡片不再使用。发布失败后只有基线仍有效且实际失败原因已消除，才能重新申请批准同一交付对象。
+发布结果不确定先核对实际结果，不把“确认已发布成功”当成绕过审查的按钮。
+已经进入 release 的任务不能直接返回 review/build：不要提议非法阶段；需要返工时请用户或有权限的维护者先保留产物、
+证据和工作区内容，核对保存位置后再继续，你的只读身份不能代做备份。说明取消可能清理工作区，经用户确认结束旧任务、
+另建任务承接。升级/回退前应处理此类遗留任务，不由技能修改状态或数据库。
+
 ## 任务什么时候算完成
-- **改了文件的任务**（代码、脚本、配置、技能、章程等）：只能以发布结束——走完验证和 Review，由用户批准发布；
+- **改了文件的任务**（代码、脚本、配置、技能、章程等）：只能以发布结束——走完验证（full 还需 Review），由用户批准发布；
   不要对这类任务 propose_complete。
 - **分析、调研、方案类任务**（交付的是文档，不改项目文件）：最终文档已经交付、并在 message 里给用户一段结论摘要之后，
   才 propose_complete；文档还在修改中就不算完成。

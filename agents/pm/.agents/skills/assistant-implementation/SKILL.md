@@ -2,7 +2,7 @@
 name: assistant-implementation
 description: build 阶段：接收批准方案，在授权工作区实施、集成和验证，核对实际交付物并提交实施报告；支持文件和 Git 交付。
 metadata:
-  template: {name: assistant-implementation, version: "2.4.0", sha: "c37f3df41d000ac8"}
+  template: {name: assistant-implementation, version: "2.4.0", sha: "c37f3df41d000ac8", content_sha: "8e349408ca7e354514365df3e7297482afd28b8b6058d145bb00dc98f5b2d137"}
   version: "2.4.0"
   load: {roles: [pm], stages: [build]}
   io:

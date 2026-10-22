@@ -2,7 +2,7 @@
 name: assistant-domain-research
 description: 行业调研（通常由"行业调研"子 agent 执行）：按固定维度联网收集用户所在行业、地区和企业规模的关键情况，写成行业速写、候选问题库和候选需求清单，作为需求提问的基础。
 metadata:
-  template: {name: assistant-domain-research, version: "1.1.0", sha: "2771270b7dea04b7"}
+  template: {name: assistant-domain-research, version: "1.1.0", sha: "2771270b7dea04b7", content_sha: "5cdec35853eb8534e30a12b30005aec2bdb0fe416d79659931d90e7281a9eb56"}
   version: "1.1.0"
   load: {roles: [pm], stages: [requirements, design], on_demand: true}
   io:

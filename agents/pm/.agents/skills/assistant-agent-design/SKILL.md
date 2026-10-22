@@ -2,7 +2,7 @@
 name: assistant-agent-design
 description: 设计产物内部的 agent（由 jobs.yaml 的 agent 作业运行）：目录结构、config.yaml、role.md 和专属技能怎么写；修改本项目 PM/Supervisor 的角色要点时也参考。
 metadata:
-  template: {name: assistant-agent-design, version: "2.0.2", sha: "753212706eea9a4b"}
+  template: {name: assistant-agent-design, version: "2.0.2", sha: "753212706eea9a4b", content_sha: "1cb835d971492f53da5a559e8f344d923ead911a0b2e01c6be3987d9daaa96fd"}
   version: "2.0.2"
   load: {roles: [pm], stages: [design, build], on_demand: true}
   changelog:

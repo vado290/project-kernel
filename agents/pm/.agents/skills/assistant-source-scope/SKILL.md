@@ -2,7 +2,7 @@
 name: assistant-source-scope
 description: 怎样在项目已授权的目录里查找和读取文件：先看全貌再按需深入，只碰当前任务需要的文件；授权范围由用户和 Kernel 决定，agent 不能自行扩大。
 metadata:
-  template: {name: assistant-source-scope, version: "4.2.0", sha: "7c23538c7562ea35"}
+  template: {name: assistant-source-scope, version: "4.2.0", sha: "7c23538c7562ea35", content_sha: "df6bed32ed551caf0a29d7ee87fe3b392c34101366ca205ca86dac7be529fd58"}
   version: "4.2.0"
   load: {roles: [pm]}
   changelog:

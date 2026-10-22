@@ -2,7 +2,7 @@
 name: assistant-volcengine-models
 description: 使用Kernel统一提供的火山方舟文本生成、图片OCR、Embedding与视频能力；模型凭据由共享Worker配置持有，不进入提示词。
 metadata:
-  template: {name: assistant-volcengine-models, version: "1.1.0"}
+  template: {name: assistant-volcengine-models, version: "1.1.0", sha: "3e291d1f4fddf9d2", content_sha: "e9244e8894b667b006b24a0205f9d05026f7e84ea99fdb5b3272f72881906450"}
   version: "1.1.0"
   load: {roles: [pm], stages: [requirements, design, build, review, operate], on_demand: true}
   changelog:

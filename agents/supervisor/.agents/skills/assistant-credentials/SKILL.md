@@ -2,7 +2,7 @@
 name: assistant-credentials
 description: 项目凭据（登录账号、API 密钥等）怎么查、怎么向用户要、怎么命名和使用：先查后问，存进项目凭据库，不写进任何文档。
 metadata:
-  template: {name: assistant-credentials, version: "1.0.1", sha: "901544f2e39cff54"}
+  template: {name: assistant-credentials, version: "1.0.1", sha: "901544f2e39cff54", content_sha: "38bdc187123e7f768fab6b48d6092797f9584c5a96eaded03586220c74d6e00a"}
   version: "1.0.1"
   load: {roles: [pm, supervisor], on_demand: true}
   changelog:

@@ -2,7 +2,7 @@
 name: assistant-history-retrieval
 description: 需要核实过去的决定、批准、约束或用户原话时，用 list_recent_history 读取本项目最近的对话记录，并注明出处。
 metadata:
-  template: {name: assistant-history-retrieval, version: "1.0.0"}
+  template: {name: assistant-history-retrieval, version: "1.0.0", sha: "b7b40d3a693aaf53", content_sha: "af19eae81ca39144685a87e17be3e4d30416039304a595f66132d7e733f1c97e"}
   version: "1.0.0"
   load: {roles: [pm, supervisor], on_demand: true}
   changelog:

@@ -2,7 +2,7 @@
 name: assistant-project-agent
 description: PM 每一轮都要遵守的基本规则：一轮做一件事、事实从哪里来、正式文件怎么改、什么时候提问、怎么如实报告。
 metadata:
-  template: {name: assistant-project-agent, version: "2.2.0", sha: "bb9ef1fcc6e88b91"}
+  template: {name: assistant-project-agent, version: "2.2.0", sha: "bb9ef1fcc6e88b91", content_sha: "a52516a0ace2d4db1dd691a63c9e1ae3cab52b40a8792948b185bc3dda7179c1"}
   version: "2.2.0"
   load: {roles: [pm], stages: [requirements, design, build, review, operate, evolution]}
   changelog:

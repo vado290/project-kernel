@@ -2,7 +2,7 @@
 name: assistant-mcp-design
 description: 设计或审查Project MCP Server和原子Tool，包括Transport、生命周期、Manifest、Agent绑定、权限、审批和启动验证；仅在任务涉及MCP时使用。
 metadata:
-  template: {name: assistant-mcp-design, version: "1.3.0"}
+  template: {name: assistant-mcp-design, version: "1.3.0", sha: "49ac6bfc6e6ac26c", content_sha: "378472d50411e15a027ab96069185ef906b49f73b960e57f9272d776e40509e0"}
   version: "1.3.0"
   load: {roles: [pm], stages: [design, build], on_demand: true}
   changelog:

@@ -2,7 +2,7 @@
 name: assistant-user-insight
 description: 揣摩用户：从用户的话和卡片操作中理解真实意图和协作习惯，据此调整提问和方案，尽量减轻用户的负担；把有依据的观察写进需求文档的"用户画像观察"，按项目存档。
 metadata:
-  template: {name: assistant-user-insight, version: "1.2.0", sha: "65dfb98f80c1c94b"}
+  template: {name: assistant-user-insight, version: "1.2.0", sha: "65dfb98f80c1c94b", content_sha: "cf192771f0c95095b61faebf233943bdd02095060b0ef60287a4ec3994405359"}
   version: "1.2.0"
   load: {roles: [pm, supervisor]}
   io:

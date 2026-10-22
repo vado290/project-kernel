@@ -2,7 +2,7 @@
 name: assistant-capability-maintenance
 description: 编写和修改技能（以及 agent 的 config.yaml）的规范：技能的固定结构、写法原则、模板与项目副本的关系和修改流程。提出或实施技能改进时使用。
 metadata:
-  template: {name: assistant-capability-maintenance, version: "2.3.0", sha: "098ebe743372e620"}
+  template: {name: assistant-capability-maintenance, version: "2.3.0", sha: "098ebe743372e620", content_sha: "2ffa028ebd0c5dc16f2fb2edd23cd773f16d9a25364a95140337692c09eafd0e"}
   version: "2.3.0"
   load: {roles: [pm], stages: [build, evolution]}
   io:

@@ -2,7 +2,7 @@
 name: assistant-shared-context
 description: 维护 kernel 的公共背景（组织与用户、技术环境、工作约定）：识别哪些信息是公共的，整理成更新卡片交给用户批准；从不写入密钥。
 metadata:
-  template: {name: assistant-shared-context, version: "1.0.0"}
+  template: {name: assistant-shared-context, version: "1.0.0", sha: "efedb319815fc1ee", content_sha: "e094adc1eae578fce2a4e20a593dfcc9fc4d3004b8220dcd8049720ff6e8e125"}
   version: "1.0.0"
   load: {roles: [pm, supervisor], capabilities: [shared_context]}
   changelog:

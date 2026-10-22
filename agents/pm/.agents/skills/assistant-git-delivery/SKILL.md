@@ -2,7 +2,7 @@
 name: assistant-git-delivery
 description: 代码交付方式下的实施与 Review：在本任务专属的 git 工作区里修改代码、写测试、自测；Kernel 自动提交，用这次提交运行测试，批准后快进主分支。
 metadata:
-  template: {name: assistant-git-delivery, version: "1.0.0", sha: "c9977298a48e8db8"}
+  template: {name: assistant-git-delivery, version: "1.0.0", sha: "c9977298a48e8db8", content_sha: "e023944e32ed8dab8149d3bb96a24dbc5df41fb89b2f6c3879fec8c8f1ce8b4f"}
   version: "1.0.0"
   load: {roles: [pm], stages: [build, review], capabilities: [git_delivery]}
   changelog:
