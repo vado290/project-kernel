@@ -2,10 +2,11 @@
 name: assistant-agent-design
 description: Design an agent inside a product (run by an agent job in jobs.yaml) — directory layout, config.yaml, role.md and its own skills; also a reference when changing the role notes of this project's PM or Supervisor.
 metadata:
-  template: {name: assistant-agent-design, version: "2.1.0", sha: "cfecd868d49af7eb", content_sha: "9532b2b6bdedd05aaecabceb3a75d61a415a8e577bcec17b0e56202578c2f617"}
-  version: "2.1.0"
+  template: {name: assistant-agent-design, version: "2.2.0", sha: "d3731714c2afe1c9", content_sha: "9228ed4e295d8f73286361abf5e77fa3d08ccd44669f3c7a9bcadd7bbb3774f6"}
+  version: "2.2.0"
   load: {roles: [pm], stages: [design, build], on_demand: true}
   changelog:
+    - "2.2.0 2026-10-25 The example config no longer sets a model; a product agent that needs another model names a profile (0.46.1)"
     - "2.1.0 2026-10-23 Written in English, the skills' source language; what the user reads follows the user's language (ROUND6, 0.46.0)"
     - "2.0.2 2026-10-18 Skills moved to one flat folder per agent, agents/<agent>/.agents/skills/ (ROUND5 R5.1)"
     - "2.0.1 2026-10-16 The runtime manifest is jobs.yaml at the project root (the vault's runtime/ folder holds Kernel's internal data)"
@@ -34,12 +35,11 @@ kind: worker
 status: active
 role: role.md
 harness:
-  provider: openai
-  reasoning_effort: medium
   timeout_seconds: 900
 tools: [get_authorized_workspace, list_authorized_tree, read_authorized_file, vault_read_text]
 ```
-List only the read-only tools it needs.
+List only the read-only tools it needs. The model comes from Kernel's model settings (config/models.yaml); to run this
+agent on a different one, add `profile: <name>` under `harness`, naming a profile defined there, and say why in the design.
 
 ## Role versus skills
 - **role.md** says who I am, whom I serve, what I am and am not responsible for, and what makes a result good.

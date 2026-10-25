@@ -2,13 +2,14 @@
 name: assistant-capability-maintenance
 description: Rules for writing and changing skills (and agents' config.yaml) — a skill's fixed structure, writing principles, how templates relate to project copies, and the change process. Use when proposing or implementing skill improvements.
 metadata:
-  template: {name: assistant-capability-maintenance, version: "2.7.0", sha: "72c52b8c9b938082", content_sha: "1a5b5a1278245273d685f210b94d44baf574ffd1afa27b37adc2ca63618c9dcd"}
-  version: "2.7.0"
+  template: {name: assistant-capability-maintenance, version: "2.8.0", sha: "6384043339cdf4c4", content_sha: "88cf2620eb5a8bdf2d5e020f614f3f8095748441f3777fce1f1ec0032323f1a7"}
+  version: "2.8.0"
   load: {roles: [pm], stages: [build, evolution]}
   io:
     reads: [improvement_proposal, skills]
     writes: [skills]  # written only in an approved build; evolution only writes the improvement proposal
   changelog:
+    - "2.8.0 2026-10-25 Models are set in one place, config/models.yaml; agent configs only name a profile for a real exception (0.46.1)"
     - "2.7.0 2026-10-23 Written in English, the skills' source language; skills stay language-neutral, models reply in the user's language (ROUND6, 0.46.0)"
     - "2.6.0 2026-10-22 D24 restored: unchanged copies are updated automatically with each Kernel version; skill adoption batches only for special cases such as changed copies (0.45.11)"
     - "2.5.0 2026-10-22 Added the evolution-only review of the agents' own skills, roles and loading, and the hand-over of approved changes"
@@ -60,8 +61,13 @@ artifacts rigorously.
 
 ## Agent configuration (config.yaml)
 Only these fields of an agent folder's `config.yaml` take effect: `schema_version: agent-config.v2`, `agent_id`,
-`agent_key`, `kind`, `status`, `role` (role.md by default), `harness` (provider, model, reasoning_effort, context_policy,
-timeout_seconds) and `tools`.
+`agent_key`, `kind`, `status`, `role` (role.md by default), `harness` (context_policy, timeout_seconds, and — only for
+a real exception — profile, provider, model, reasoning_effort) and `tools`.
+- **Models are set in one place**, Kernel's `assistant-data/config/models.yaml`: named profiles, the default profile and
+  the profile per role. Leave provider / model / reasoning_effort out of an agent's config so it follows that file.
+  Only when one agent truly needs something else (for example a product agent that should run on a cheaper model),
+  set `harness.profile: <name>` to a profile defined there — or, as a last resort, the single field. The user sees
+  what every agent runs with by sending /models.
 - `tools` may only name current tools (the check before release rejects unknown names; the names listed in its error are
   authoritative): it can only narrow the tools the executor offers, never widen them.
 - Platform tools are always given and need not be listed: get_authorized_workspace, list_recent_history, list_iterations,

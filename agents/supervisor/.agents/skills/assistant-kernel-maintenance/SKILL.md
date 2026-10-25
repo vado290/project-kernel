@@ -2,10 +2,11 @@
 name: assistant-kernel-maintenance
 description: Extra rules when the kernel project changes itself — the running kernel and the code being changed stay strictly apart, changes keep the core principles and are covered by tests, and the user deploys.
 metadata:
-  template: {name: assistant-kernel-maintenance, version: "1.1.0", sha: "a7995e231f118402", content_sha: "908062f199bc872336c5bd9d2cb5dc9b8ae793923bd6efbf0b850e1c8fb412e0"}
-  version: "1.1.0"
+  template: {name: assistant-kernel-maintenance, version: "1.2.0", sha: "b5868500a282d7b5", content_sha: "41f143ab02eef348320c3857fe2083d0bc8ae1b5ab9463c1f21a0b4e1c253223"}
+  version: "1.2.0"
   load: {roles: [pm, supervisor], stages: [design, build, review, evolution], purposes: [evaluate], capabilities: [kernel_maintenance]}
   changelog:
+    - "1.2.0 2026-10-25 Model settings are production configuration in config/models.yaml: propose changes, never edit them (0.46.1)"
     - "1.1.0 2026-10-23 Written in English, the skills' source language; interface text lives in i18n/en.yaml (ROUND6, 0.46.0)"
     - "1.0.0 2026-10-16 Enabled (R4b): kernel maintains itself by code delivery; Kernel commits automatically, tests run on the commit, the user deploys after the merge"
     - "0.1.0 2026-10-16 Draft: enabled with R4b (kernel self-maintenance)"
@@ -19,6 +20,9 @@ metadata:
 - `AGENTS.md` at the repository root and `docs/ARCHITECTURE.md` describe the layout, the core principles and how to test;
   read them first. When you change the architecture or a principle, update both documents.
 - Never change the production virtual environments, configuration or database, and never run the deploy script.
+  That includes the model settings, `assistant-data/config/models.yaml` (which engine, provider, model and reasoning
+  effort the agents use): when a change seems needed, propose it to the user with the reason; the user edits the file
+  and checks the result with /models. Agent config.yaml files in the code (templates) do not set models.
 - Kernel runs the test command on your commit during validation (the core tests create and drop their own temporary
   databases); during the build run the relevant tests in the workspace too — the command is in AGENTS.md. After the
   release main is fast-forwarded to your commit; it goes live only when the user runs `deploy.ps1`.
