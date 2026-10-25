@@ -6,9 +6,7 @@ status: active
 display_name: Project Agent
 role: role.md
 harness:
-  provider: openai
   context_policy: max
-  reasoning_effort: medium
   timeout_seconds: 1800
 tools:
 - get_authorized_workspace
