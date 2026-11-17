@@ -2,13 +2,14 @@
 name: assistant-solution-design
 description: Design stage — from the approved requirements, design the complete solution from input to usable result, verify the key dependencies, and spell out the hand-over to the build and how it is accepted.
 metadata:
-  template: {name: assistant-solution-design, version: "2.6.0", sha: "1cca70d4588f6e85", content_sha: "1d9c6c5c6fc8f2d3d86da0b894bd7ebbffb190d73f812fa811f0a6682afd0851"}
-  version: "2.6.0"
+  template: {name: assistant-solution-design, version: "2.7.0", sha: "cf32da3d58cbbe3a", content_sha: "e12af01dcca9b18c5bdee1850ddd1cae62e4fbea871a138850d89a5b89d2511c"}
+  version: "2.7.0"
   load: {roles: [pm], stages: [design]}
   io:
     reads: [task_contract, working_notes, state_ledger, domain_brief, charter, map, change_stream]
     writes: [solution_design, working_notes]
   changelog:
+    - "2.7.0 2026-11-17 Align model routing and stable-prefix method with actual runtime boundaries"
     - "2.6.0 2026-11-16 A model call is a key dependency: plan it in the Model plan of section 3 and ask for missing model setup in this stage (assistant-model-routing)"
     - "2.5.0 2026-11-05 Add bounded dependency recovery and distinguish current blockers from later prerequisites"
     - "2.4.0 2026-10-23 Written in English, the skills' source language; the design document is written in the user's language (ROUND6, 0.46.0)"
@@ -98,3 +99,9 @@ Items that can be left to the build state their content, impact, who resolves th
 when, the pass condition and what happens on failure; local implementation details may be decided within the design's
 constraints. Use outcome = completed and document.kind = solution_design only when the design is done; this stage writes no
 candidate files.
+
+## Model selection and prompt reuse
+Apply assistant-model-routing to the Model plan: identify each owning agent/script, purpose, profile, real call entry
+point and minimum capability test. Check profile availability, not just stored keys. Bind product calls to the approved
+purpose and record reusable prompt rules versus dynamic data in the same design row. Distinguish legacy/undeclared from
+an explicit empty plan. Prefer the smallest complete business path; ask about real scope/cost/privacy conflicts only.

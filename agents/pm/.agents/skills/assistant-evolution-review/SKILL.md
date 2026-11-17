@@ -2,13 +2,14 @@
 name: assistant-evolution-review
 description: Weekly review (the core method of the operate stage, triggered weekly or by /evolve) — check the effect of the last improvements, find problems and their root causes in the run records and change stream, and propose improvements with expected effects and ways to measure them, closing the loop "improve → record → review".
 metadata:
-  template: {name: assistant-evolution-review, version: "2.5.0", sha: "bdfa0fd57c0a0893", content_sha: "40ec8b87a234da5a938a7a53016a44675b94052fe3ca9bc483855dcc392a6c87"}
-  version: "2.5.0"
+  template: {name: assistant-evolution-review, version: "2.6.0", sha: "c8708e0a1a2b4a5a", content_sha: "7e5c97058c556a7020ec8189b7ea7f1e893a01b14896bdc6ecb3561481f392cf"}
+  version: "2.6.0"
   load: {roles: [pm], stages: [evolution]}
   io:
     reads: [digest, change_stream, user_profile, map, charter, skills, template_updates]
     writes: [improvement_proposal]
   changelog:
+    - "2.6.0 2026-11-17 Align model routing and stable-prefix method with actual runtime boundaries"
     - "2.5.0 2026-11-16 Permission-gate portfolio evidence; distinguish CoS advice from project operation and remove legacy background candidate assumptions"
     - "2.4.0 2026-10-23 Written in English, the skills' source language; the proposal is written in the user's language with the effect-review heading the output requirements give (ROUND6, 0.46.0)"
     - "2.3.0 2026-10-22 Added material paging and backlog coverage, goal-oriented analysis, reviews of the agents' own roles and skills, and the hand-over of duplicate proposals"
@@ -126,3 +127,9 @@ invalid or ambiguous ids never become valid write-backs and stay as items to che
 - [ ] Every problem has evidence; every proposal has a measurable way to measure it
 - [ ] Skill changes give the new wording verbatim, not "improve it a bit"
 - [ ] No proposal was made just to fill the list
+
+## Model selection and prompt reuse
+Use model routing and cache evidence only when available: actual profile/model, quality, invocation usage and failed
+attempts. Unknown cost is not zero, and a stable prompt hash is not a provider cache hit. Recommend a scoped model change
+for existing purposes through Supervisor consultation; new capabilities remain product tasks. Never enable scheduled
+reviews only to gather model statistics. Prefer small evidence-based changes and preserve existing task boundaries.

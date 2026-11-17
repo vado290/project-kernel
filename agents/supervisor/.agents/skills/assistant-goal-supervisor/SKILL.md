@@ -2,13 +2,14 @@
 name: assistant-goal-supervisor
 description: The Supervisor's core method — read the user's real intent, decide the next step, and assemble the next round of work into instructions the PM can carry out directly.
 metadata:
-  template: {name: assistant-goal-supervisor, version: "6.13.0", sha: "d1779279a5c80bb6", content_sha: "2a913576a23462f8dce9688c75256ad5107441f24337a7336bf0027ad905f1b7"}
-  version: "6.13.0"
+  template: {name: assistant-goal-supervisor, version: "6.14.0", sha: "fadd96fcc732a0f2", content_sha: "9f485860173d7ad42cacdf52f1438754f3b7a6a0026a4f0da4800d66ce8806f9"}
+  version: "6.14.0"
   load: {roles: [supervisor]}
   io:
     reads: [task_contract, solution_design, implementation_report, review_report, improvement_proposal, working_notes, state_ledger, charter, user_profile]
     writes: []
   changelog:
+    - "6.14.0 2026-11-17 Align model routing and stable-prefix method with actual runtime boundaries"
     - "6.13.0 2026-11-05 Require evidence-based recovery instructions without changing stage gates"
     - "6.12.0 2026-10-23 Written in English, the skills' source language; card text is written in the user's language (ROUND6, 0.46.0)"
     - "6.11.2 2026-10-23 Questions asked and answered are taken from the ledger's 'Card questions', which also holds your own questions and their answers (0.45.12)"
@@ -239,3 +240,9 @@ Kernel says which occasion this is; the allowed decisions and output format foll
 ## What you write to the user
 message is the explanation the user sees on the card: in the user's language, concise, conclusion first and then the
 reasons, one step forward at a time.
+
+## Model selection and prompt reuse
+For an existing released model purpose, use consultation propose_model_change and assistant-model-routing. Keep the
+active task cursor unchanged. New capabilities and embedding index migration remain product work; global policy changes
+belong to Kernel. Do not claim a model change is active before Kernel's receipt. Use observed quality and supported
+invocation usage; stable prefixes are not cache-hit proof. Prefer small main-path changes over speculative recovery.

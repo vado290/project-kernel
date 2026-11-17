@@ -2,13 +2,14 @@
 name: assistant-operation
 description: "Operating health checklist (read on demand in reviews) — whether the project's released products are running properly: jobs and services, whether data is updated on time, whether anyone uses the output, user feedback; gives the review the facts on how things are running."
 metadata:
-  template: {name: assistant-operation, version: "3.6.0", sha: "c4175822ee8d7739", content_sha: "50db80c8a0e7a6471ad22f34a592aefa3a7441b6d3de1e10c92d652224958f8c"}
-  version: "3.6.0"
+  template: {name: assistant-operation, version: "3.7.0", sha: "1cf78eb0a0e7d9fd", content_sha: "507d36ef1f2a270569ee8a5f4b8cb553b37b15a424ffcc47ef63ce869a90529a"}
+  version: "3.7.0"
   load: {roles: [pm], stages: [evolution], on_demand: true}
   io:
     reads: [charter, map, jobs, digest, change_stream]
     writes: []
   changelog:
+    - "3.7.0 2026-11-17 Align model routing and stable-prefix method with actual runtime boundaries"
     - "3.6.0 2026-11-16 Apply the same operating method to CoS own outputs; portfolio observations remain permission-scoped and never authorize target operating actions"
     - "3.5.0 2026-11-16 Clarified that reviews may be user- or event-triggered; queue recovery, lease reconciliation and health checks remain active when scheduled reviews are disabled"
     - "3.4.0 2026-10-23 Written in English, the skills' source language (ROUND6, 0.46.0)"
@@ -89,3 +90,9 @@ never blindly publish again or treat a cancelled task as an undone side effect.
 - Taking "the job succeeded" as "all is well": a successful job does not mean correct output — sample the output.
 - Using counts instead of risk: a single data corruption, permission breach or failed key delivery must be handled too;
   for ordinary occasional fluctuations state the impact and the basis of observation.
+
+## Model selection and prompt reuse
+For model-backed products, distinguish the configured profile, effective route and successful capability evidence.
+Evaluate quality, failure and known invocation costs; context occupancy and session totals are not per-call bills.
+A model-only change for an existing purpose goes through Supervisor consultation and its model-change card; adding a
+capability or migrating embedding indexes remains product work. Keep scheduled review switches unchanged.
