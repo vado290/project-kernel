@@ -2,10 +2,12 @@
 name: assistant-task-continuity
 description: The fixed sections and numbering rules of every artifact (charter, requirements, industry brief, design, implementation report, review report, improvement proposal); the PM writes and the Supervisor reads artifacts by them.
 metadata:
-  template: {name: assistant-task-continuity, version: "2.15.0", sha: "a4dadefac7c57ae2", content_sha: "8431340c8030dc6c2277bc7226bc6341a7c90ae2eaffb33e34338e910ad4d0b5"}
-  version: "2.15.0"
+  template: {name: assistant-task-continuity, version: "2.17.0", sha: "8d1ed7bd63993293", content_sha: "f99086196d0c4185c745b7b18947372f703d4b99bcd42d5dff5361d975bce1e5"}
+  version: "2.17.0"
   load: {roles: [pm, supervisor]}
   changelog:
+    - "2.17.0 2026-11-16 Design section 3 and the quick track's brief solution carry the Model plan when a step calls a model; section 9 names each agent job's profile (assistant-model-routing)"
+    - "2.16.0 2026-11-16 Clarified bounded operational work, optional reviews and the distinction between maintenance recovery and review scheduling"
     - "2.15.0 2026-10-23 Written in English, the skills' source language; artifacts are written in the user's language, and headings Kernel parses come from the output requirements (ROUND6, 0.46.0)"
     - "2.14.0 2026-10-23 The ledger gains 'Card questions': every question asked through cards (by the PM and the Supervisor) with the answer or why there is none — the reference for what was asked and answered (0.45.12)"
     - "2.13.0 2026-10-22 The change stream also holds commits outside tasks that Kernel imports (outside, manual, system); look at them too for recent changes (0.45.11)"
@@ -157,6 +159,9 @@ its priority: must / should / could) · 6 Acceptance criteria (A, each naming it
 industry facts collected now and reusable later, each with source and date) · 11 User-profile observations (traits of the
 user that matter for collaboration, format in assistant-user-insight; "None" (or the word for it in the user's language) if there are none) · Revision log
 
+On the quick track the requirements document also holds the brief solution; when the change calls a model, the brief
+solution includes the Model plan (table and `model_plan` block, assistant-model-routing).
+
 ### Industry brief (domain_brief, requirements stage, stored as `knowledge/domain-brief.md` when the requirements are approved)
 Sections and how to write them in assistant-domain-research: 0 locating parameters and validity · 1 industry brief ·
 2 business processes and terms · 3 regulation and compliance · 4 tools and competitors · 5 pain points and opportunities ·
@@ -179,7 +184,8 @@ task's complexity.
 - Section 2: R → D → A and what this round covers; deferrals or adjustments cite the user's decisions in effect — "stating
   a reason" does not replace approval.
 - Section 3: inputs, actors, outputs and receivers of the key business steps, the necessary interfaces, dependency choices
-  and evidence, and the basis of important decisions.
+  and evidence, and the basis of important decisions; the Model plan (table and `model_plan` block, assistant-model-routing)
+  when any step calls a model.
 - Sections 4–6: the concrete changes and their purposes; for each A the verification method, data or environment, pass
   condition and evidence needed; the deliverable's receiver, how it is used, enabling conditions and impact.
 - Section 7: failures and recovery that actually matter; open items state content, impact, who resolves them, when, the
@@ -190,7 +196,8 @@ task's complexity.
 - Section 8: the goal, inputs, write set, output, receiver and acceptance of build subtasks; design-stage investigations and
   reviews get their own subsection recording where the key evidence is and whether it was adopted, rejected or left open —
   a temporary subagent is never treated as an executor still running in the next stage.
-- Section 9: follows the existing agreements when it must run; "None" for document-only and similar tasks.
+- Section 9: follows the existing agreements when it must run; each agent job names its profile or "default"; "None" for
+  document-only and similar tasks.
 
 #### Design completion standard
 Only for judging whether design is complete; the PM's self-check and the Supervisor's decision on the next step share this

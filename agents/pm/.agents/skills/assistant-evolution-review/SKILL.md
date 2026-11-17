@@ -2,13 +2,14 @@
 name: assistant-evolution-review
 description: Weekly review (the core method of the operate stage, triggered weekly or by /evolve) — check the effect of the last improvements, find problems and their root causes in the run records and change stream, and propose improvements with expected effects and ways to measure them, closing the loop "improve → record → review".
 metadata:
-  template: {name: assistant-evolution-review, version: "2.4.0", sha: "73af0f06e22ed4d8", content_sha: "29b27a003ae39127facffe2851f527b30a52be971ca2ad6427d9b91abdc5c54c"}
-  version: "2.4.0"
+  template: {name: assistant-evolution-review, version: "2.5.0", sha: "bdfa0fd57c0a0893", content_sha: "40ec8b87a234da5a938a7a53016a44675b94052fe3ca9bc483855dcc392a6c87"}
+  version: "2.5.0"
   load: {roles: [pm], stages: [evolution]}
   io:
     reads: [digest, change_stream, user_profile, map, charter, skills, template_updates]
     writes: [improvement_proposal]
   changelog:
+    - "2.5.0 2026-11-16 Permission-gate portfolio evidence; distinguish CoS advice from project operation and remove legacy background candidate assumptions"
     - "2.4.0 2026-10-23 Written in English, the skills' source language; the proposal is written in the user's language with the effect-review heading the output requirements give (ROUND6, 0.46.0)"
     - "2.3.0 2026-10-22 Added material paging and backlog coverage, goal-oriented analysis, reviews of the agents' own roles and skills, and the hand-over of duplicate proposals"
     - "2.2.0 2026-10-21 Added the operating baseline, tracking of items under observation, business effect evidence and risk-based delegation; kept the write-back of valid verdicts on cancellation"
@@ -30,9 +31,10 @@ then whether the business method, product, data, roles or skills should change �
 - the change stream: a bounded record of the last 4 weeks, effect reviews not yet done and earlier major changes; respect
   the limits and cut-off notes in the prompt and query specifically when needed;
 - the user profile, the project map, the charter; skills whose templates were updated; broken skill hand-offs (if any); for
-  the kernel project also the other projects' operations and the candidates of facts other projects marked as shared that
-  the shared background lacks (those worth adopting go under "5 for the user to decide", naming the file and section they
-  should go into; once the user says so in the Supervisor channel, the Supervisor proposes the change).
+  Kernel maintenance also receives platform counts without business content. Kernel/CoS portfolio pages require Project
+  Access; use observed_at, policy_revision, coverage and next_cursor, and mark omitted scopes unknown. No background
+  archives are scanned for shared candidates. A CoS review links prior advice to stated user goals; other projects keep
+  execution ownership, and proposed cross-project actions are recommendations, not dispatched orders.
 When you need more, query as needed: `list_iterations(artifact=..., query=...)` for the history of an artifact or matter;
 read a task's ledger or documents to verify details. **The latest state decides; history is only a reference** — do not
 leaf through every artifact's history.

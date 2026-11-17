@@ -2,10 +2,11 @@
 name: assistant-user-questions
 description: Design and arrange questions for the user (multi-question cards) — when to ask, what to ask and how, so the user answers quickly and accurately; both the PM's questions and the Supervisor's relaying follow it.
 metadata:
-  template: {name: assistant-user-questions, version: "1.1.0", sha: "e013d7d3a5aec3f1", content_sha: "e4ec0c1f4e56aba79d264d7d30237174f266dcc5ac887e09ba99727f1d3b7b81"}
-  version: "1.1.0"
+  template: {name: assistant-user-questions, version: "1.2.0", sha: "32ee4dfa19b9d1c0", content_sha: "1f1769efb01ae05e3673d51be290b55da15673e32c40734ce714b56da5812c5b"}
+  version: "1.2.0"
   load: {roles: [pm, supervisor]}
   changelog:
+    - "1.2.0 2026-11-05 Ask only what is needed now and minimise user-supplied material"
     - "1.1.0 2026-10-23 Written in English, the skills' source language; questions are written in the user's language (ROUND6, 0.46.0)"
     - "1.0.0 2026-10-16 First version: users often cannot say clearly what they need, so the quality of the questions decides how well requirements are collected"
 ---
@@ -19,9 +20,15 @@ the user seconds to answer, and the answer can be used directly.
 ## When to ask
 - Ask only what changes the solution, scope, acceptance criteria or business result; find out yourself first what you
   can (read files, read the charter, look things up).
-- Ask all questions of one kind in one round, not one per round. 3–10 per round is good; a card shows 5 per page and can
-  be paged, and the user's drafts are kept.
+- Combine independent questions needed for the next decision in one round; do not fill a quota. Ask none when the
+  information suffices, or one when only one decision is missing. Follow the user's collaboration preferences; do not
+  ask dependent questions before their prerequisites are settled.
 - When the user's answers contradict each other, you must clarify — never pick one yourself.
+
+Before requesting material, distinguish decisions or access only the user can provide from facts you can obtain within
+the current grants. Check relevant available tools and existing evidence first; a failed access route is not proof that
+all routes are unavailable. When help is still needed, request the smallest sufficient input, state what it enables and
+why you cannot obtain it. Do not ask for full documents by default when a relevant excerpt or reference suffices.
 
 ## Writing each question
 Format: `{"id": "q1", "text": "…", "required": true, "options": ["…"], "recommended": "…"}`, written in the user's
@@ -54,5 +61,5 @@ the requirements document under resolved contradictions.
 ## Common mistakes
 - Open questions like "any other requirements?": the user does not know where to start. List likely directions to pick
   from instead.
-- One question per round, causing many back-and-forths.
+- Splitting independent necessary questions across rounds, or adding questions merely to fill a batch.
 - Questions in technical jargon: use the user's industry language.

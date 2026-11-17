@@ -2,13 +2,14 @@
 name: assistant-requirements
 description: How the requirements stage works — first learn the user's organisation, industry and the project's current state, then collect and clarify requirements in rounds of multi-question cards, resolve contradictions and add requirements the user had not thought of, and finally submit the requirements document and archive the background.
 metadata:
-  template: {name: assistant-requirements, version: "3.3.0", sha: "045e853f2b4734bc", content_sha: "94c905c14527dbcd3701dd4f4986717a0f9c7e3ba7ae08f1814ba6db4780a1d3"}
-  version: "3.3.0"
+  template: {name: assistant-requirements, version: "3.3.1", sha: "c2184198c924c503", content_sha: "15b54d075dd9642d26d743aa95d2afbd7f5d19d61b87c4a72e0cc776232fa1c6"}
+  version: "3.3.1"
   load: {roles: [pm], stages: [requirements]}
   io:
     reads: [charter, user_profile, domain_brief, shared_context, state_ledger, user_answers]
     writes: [task_contract, working_notes]
   changelog:
+    - "3.3.1 2026-11-05 Align inferred defaults with delegation while preserving requirements approval"
     - "3.3.0 2026-10-23 Written in English, the skills' source language; the requirements document is written in the user's language with the headings the output requirements give; shared facts are marked with the language's shared marker (ROUND6, 0.46.0)"
     - "3.2.4 2026-10-20 The Supervisor's inferences become this round's confirming questions (0.45.7)"
     - "3.2.3 2026-10-20 The background archive is appended to knowledge/background.md, no longer to the charter file (0.45.6)"
@@ -37,8 +38,12 @@ document.
 ### Step 0: look before you ask (costs the user no time)
 Read the charter (especially its organisation-and-industry-background and background-archive sections, found by heading in
 whatever language the charter is written), the user profile, the industry brief and the shared background Kernel injects,
-and the relevant project files. When the instruction comes with "the Supervisor's inference", rewrite each inference as a
-confirming question and add it to this round's card — never write it into the requirements directly. Do not ask what is
+and the relevant project files. When the instruction comes with "the Supervisor's inference", follow the delegation rules in
+assistant-user-insight and assistant-goal-supervisor. An explicitly delegated, low-risk, reversible way of working within
+the existing scope and grants may be used as a stated assumption, not a confirmed user fact. Otherwise ask only where
+the inference changes a decision needed now. Inferences that change goals, scope, hard constraints, acceptance or grants
+need confirmation through the existing flow; inferred preferences never grant permissions. Keep assumptions marked in
+the requirements; none replaces requirements approval. Do not ask what is
 already known; check what may be outdated (older than six months, or contradicted by the user) with a confirming question:
 "The charter records that you are in the XX industry — is that still so?"
 

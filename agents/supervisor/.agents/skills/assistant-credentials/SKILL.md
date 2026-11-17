@@ -2,10 +2,11 @@
 name: assistant-credentials
 description: How to look up, ask the user for, name and use project credentials (logins, API keys) — look before you ask, store them in the project's credential store, never write them into any document.
 metadata:
-  template: {name: assistant-credentials, version: "1.1.0", sha: "adfbe41d40a424f2", content_sha: "07823054b7f358ad879a9514330c6a585872b6e2b4805e4fd6e15a6ad4b8e430"}
-  version: "1.1.0"
+  template: {name: assistant-credentials, version: "1.2.0", sha: "740a0bcb249aa7e6", content_sha: "42d2f71d24b7e00c3c4c35e4c53b2b533639a99dea0ade4ebdc78fbdab1de0ee"}
+  version: "1.2.0"
   load: {roles: [pm, supervisor], on_demand: true}
   changelog:
+    - "1.2.0 2026-11-16 Model vendor keys are not project credentials: they are asked with model_setup and kept by Kernel (assistant-model-routing)"
     - "1.1.0 2026-10-23 Written in English, the skills' source language; what the user reads follows the user's language (ROUND6, 0.46.0)"
     - "1.0.1 2026-10-20 Clarified how credentials reach jobs.yaml jobs; no longer promises automatic environment injection from product.yaml"
     - "1.0.0 2026-10-18 New (ROUND5 R5.2): one credential store per project, runtime/credentials.json; look before you ask"
@@ -27,6 +28,12 @@ came from.
    {"key": "binance_api", "service": "Binance API", "purpose": "read market data and positions"}}` — written in the
    user's language. Such a question goes straight to the user on a card; Kernel stores what the user enters.
 4. Ask only for what is really missing; never ask again for what the user already gave.
+
+## Model vendor keys are not project credentials
+Keys for model vendors (Qwen / Bailian, DeepSeek, OpenRouter, any OpenAI-compatible endpoint …) never go into this store
+and are never asked with `credential`. Kernel keeps one per vendor for the whole installation and no tool returns it; plan
+model use and ask for setup with `model_setup` by assistant-model-routing. If the user offers such a key in a message, do
+not repeat or store it; point to the model setup question instead.
 
 ## Naming
 - key uses lowercase letters, digits and underscores, preferably `<service>_<purpose>`, such as `binance_api`,

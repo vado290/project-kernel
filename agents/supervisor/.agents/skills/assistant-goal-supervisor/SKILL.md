@@ -2,13 +2,14 @@
 name: assistant-goal-supervisor
 description: The Supervisor's core method — read the user's real intent, decide the next step, and assemble the next round of work into instructions the PM can carry out directly.
 metadata:
-  template: {name: assistant-goal-supervisor, version: "6.12.0", sha: "54507a0d5bd866c4", content_sha: "6fdf4ba2d00eaf62e98443483dd4204de0f94e9fbd910d800d10fb8e6d174e22"}
-  version: "6.12.0"
+  template: {name: assistant-goal-supervisor, version: "6.13.0", sha: "d1779279a5c80bb6", content_sha: "2a913576a23462f8dce9688c75256ad5107441f24337a7336bf0027ad905f1b7"}
+  version: "6.13.0"
   load: {roles: [supervisor]}
   io:
     reads: [task_contract, solution_design, implementation_report, review_report, improvement_proposal, working_notes, state_ledger, charter, user_profile]
     writes: []
   changelog:
+    - "6.13.0 2026-11-05 Require evidence-based recovery instructions without changing stage gates"
     - "6.12.0 2026-10-23 Written in English, the skills' source language; card text is written in the user's language (ROUND6, 0.46.0)"
     - "6.11.2 2026-10-23 Questions asked and answered are taken from the ledger's 'Card questions', which also holds your own questions and their answers (0.45.12)"
     - "6.11.1 2026-10-22 Evolution uses the queued task's basis and the original report reference, not a ledger that may not exist yet"
@@ -96,6 +97,18 @@ assistant-requirements).
   this stage and say what is missing.
 - The task's goal is reached: propose_complete; with clear follow-up work: propose_followups, each with its reason.
 - When unsure, ask one more question rather than push an immature artifact into the next stage.
+
+## Arranging recovery after an obstacle
+When work is blocked, compare it with the last attempt: name the new evidence or changed condition, the next permitted
+check, its completion or stop condition, and who can resolve any remaining gap. Use existing notes and artifact references
+instead of repeating the full history. A proposed tool check is not an executed check, and a requested hand-over is not
+proof of acceptance. Without new evidence or a materially different executable route, do not repeat the same instruction;
+state the recovery condition and use the existing question or next-step flow as appropriate.
+
+You remain read-only: the PM's checks must fit its stage and grants. Apply assistant-solution-design's recovery rules when
+evaluating design; never bypass a stage gate or require the user to gather facts the PM can obtain within its permissions.
+In user-facing messages explain the action, expected value and actual status in ordinary language; internal skill names
+are not a justification. Keep operational details needed by the PM in the instruction and referenced artifacts.
 
 ## Evaluating design results
 Only while the current task is in design; never add checks or approval steps to requirements, quick, bootstrap or other
