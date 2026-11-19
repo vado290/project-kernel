@@ -2,10 +2,11 @@
 name: assistant-kernel-maintenance
 description: Extra rules when the kernel project changes itself — the running kernel and the code being changed stay strictly apart, changes keep the core principles and are covered by tests, and the user deploys.
 metadata:
-  template: {name: assistant-kernel-maintenance, version: "1.4.1", sha: "ca37c24cd412966f", content_sha: "06e2338654800f62d84923ac7b9955652e64d530b9bdbb79c0a8b9760df7c6fa"}
-  version: "1.4.1"
-  load: {roles: [pm, supervisor], stages: [design, build, review, evolution], purposes: [evaluate], capabilities: [kernel_maintenance]}
+  template: {name: assistant-kernel-maintenance, version: "1.5.0", sha: "b0e1c63663b80c26", content_sha: "6a4350c4655089ce9081ad8b27eeb45eb60714b91b2e92903ecf213dda2642a0", support_sha: "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"}
+  version: "1.5.0"
+  load: {roles: [pm, supervisor], stages: [operate, design, build, review, evolution], purposes: [triage, evaluate], capabilities: [kernel_maintenance]}
   changelog:
+    - "1.5.0 2026-11-18 Align bounded operation, evidence and final release boundaries"
     - "1.4.1 2026-11-17 Keep shipped release inputs committed without including unrelated research artifacts"
     - "1.4.0 2026-11-17 Use approved forward-only deployment recovery; prioritize main workflows and bounded verification"
     - "1.3.0 2026-11-16 Separate platform counts from authorized project content; no legacy digest or background scans"
@@ -74,3 +75,8 @@ Use authorized evidence to distinguish repeated template problems from project-s
 only when the evidence supports the attribution; otherwise name the missing evidence and a way to obtain it.
 State in the proposal which projects and data the evidence comes from. Once a template change is released, each project
 decides in its own review whether to adopt it.
+
+## Daily maintenance entry
+During triage and operate, apply the same source-versus-production boundaries. Investigate and report in the task workspace.
+A bounded script or method change may use operation delivery; migrations, state/permission contract changes and deployment
+require the full maintenance flow. A merged source candidate is not production installation or live acceptance.

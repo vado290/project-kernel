@@ -2,13 +2,15 @@
 name: assistant-capability-maintenance
 description: Rules for writing and changing skills (and agents' config.yaml) — a skill's fixed structure, writing principles, how templates relate to project copies, and the change process. Use when proposing or implementing skill improvements.
 metadata:
-  template: {name: assistant-capability-maintenance, version: "2.8.0", sha: "6384043339cdf4c4", content_sha: "88cf2620eb5a8bdf2d5e020f614f3f8095748441f3777fce1f1ec0032323f1a7"}
-  version: "2.8.0"
-  load: {roles: [pm], stages: [build, evolution]}
+  template: {name: assistant-capability-maintenance, version: "2.9.1", sha: "ff41d1f29ee823e1", content_sha: "3714b21a71a2a98f00f2ed7bae256df3b5ee6a0d04707f01ec42517cddf51cd0", support_sha: "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"}
+  version: "2.9.1"
+  load: {roles: [pm], stages: [operate, build, evolution], on_demand_stages: [operate]}
   io:
     reads: [improvement_proposal, skills]
     writes: [skills]  # written only in an approved build; evolution only writes the improvement proposal
   changelog:
+    - "2.9.1 2026-11-19 Preserve full maintenance guidance for existing build and evolution stages"
+    - "2.9.0 2026-11-18 Align bounded operation, evidence and final release boundaries"
     - "2.8.0 2026-10-25 Models are set in one place, config/models.yaml; agent configs only name a profile for a real exception (0.46.1)"
     - "2.7.0 2026-10-23 Written in English, the skills' source language; skills stay language-neutral, models reply in the user's language (ROUND6, 0.46.0)"
     - "2.6.0 2026-10-22 D24 restored: unchanged copies are updated automatically with each Kernel version; skill adoption batches only for special cases such as changed copies (0.45.11)"
@@ -37,7 +39,7 @@ artifacts rigorously.
   reviews, and may rework or even overturn the template; Kernel loads only the project's own copies.
 - **Template updates (ROUND5 D24)**: Kernel syncs the templates once per version: new template skills are installed for the
   matching agents; copies the project **never changed** (body and metadata matching the fingerprint taken at installation)
-  are replaced with the new version automatically; changed copies stay as they are, and the weekly review sees "template
+  are replaced with the new version automatically; changed copies stay as they are, and an on-demand review sees "template
   updated" with its changelog, so the project decides whether and what to adopt; skills the project deleted are not put
   back.
 - **Skill adoption batches (special cases, off by default)**: when a template must be merged into a copy the project
@@ -71,8 +73,8 @@ a real exception — profile, provider, model, reasoning_effort) and `tools`.
 - `tools` may only name current tools (the check before release rejects unknown names; the names listed in its error are
   authoritative): it can only narrow the tools the executor offers, never widen them.
 - Platform tools are always given and need not be listed: get_authorized_workspace, list_recent_history, list_iterations,
-  map_lookup, list_credentials, get_credential, and the PM's task document tools. So `tools: []` for the Supervisor means
-  "platform tools only".
+  map_lookup, list_credentials, and the PM's task document tools. So `tools: []` for the Supervisor means
+  "offered platform tools only". Credential values and effectful tools are not offered to read-only consultations.
 - The sandbox and whether candidate files can be written are decided by Kernel per role and stage, not in the
   configuration; other fields have no effect — do not add them.
 
@@ -162,3 +164,16 @@ written but never read, or read but never written — the starting point for che
    project's own changes, merge the template's improvements, write in the changelog "adopted which parts of template X.Y.Z,
    kept which local changes", and update `template.version`.
 5. After the change, watch the next review's records to confirm whether the problem improved.
+
+## Project skill creator during daily work
+Use this branch when a real, reusable method is missing. First compare existing skills; do not create a skill for a one-off
+fact or duplicate a public method. Record the evidence, expected improvement and project constraints in the scoped brief.
+Create the smallest project-owned skill directory, English SKILL.md and only necessary references/scripts. Define when it
+should and should not trigger, required inputs, output, hand-over and failure handling. Preserve the charter and public
+method boundaries; changing role/config, authority or approval semantics is not ordinary skill polishing.
+Validate at least one representative use, a similar non-trigger case, and missing/invalid input. Keep examples synthetic
+or project-authorized. Compare the outcome to the actual need, not just formatting. Build candidates, verify and obtain
+the final release decision through Kernel. The current turn retains its baseline; the new version starts next turn.
+After release distinguish installed, selected, discoverable, actually read and effective. Observe later real results before
+promoting a project method to a public template. Public promotion is Kernel work and never copies private project data.
+Evolution remains proposal-only; maintenance-adoption batches do not grant arbitrary new skill installation.

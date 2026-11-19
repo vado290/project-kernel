@@ -1,42 +1,62 @@
 ---
 name: assistant-operation
-description: "Operating health checklist (read on demand in reviews) — whether the project's released products are running properly: jobs and services, whether data is updated on time, whether anyone uses the output, user feedback; gives the review the facts on how things are running."
+description: "Daily PM work: investigate, analyze, produce reports, maintain small scripts and project methods, verify results and preserve continuity within the current task authority."
 metadata:
-  template: {name: assistant-operation, version: "3.7.0", sha: "1cf78eb0a0e7d9fd", content_sha: "507d36ef1f2a270569ee8a5f4b8cb553b37b15a424ffcc47ef63ce869a90529a"}
-  version: "3.7.0"
-  load: {roles: [pm], stages: [evolution], on_demand: true}
+  template: {name: assistant-operation, version: "4.1.2", sha: "47315deadf2d7daf", content_sha: "c6b90bfdf69789677a7411a207892a63a8bbd290d0909f6d7b8633709121c268", support_sha: "f9350f1cc225b85af918c3dba3f9e272b37b2f8d74515e8d2338d9a37d0af48c"}
+  version: "4.1.2"
+  load: {roles: [pm], stages: [operate, build, evolution], purposes: [triage], on_demand_stages: [evolution]}
   io:
-    reads: [charter, map, jobs, digest, change_stream]
-    writes: []
+    reads: [charter, map, jobs, state_ledger, working_notes, change_stream, user_answers]
+    writes: [operation_report, task_contract, working_notes]
   changelog:
+    - "4.1.2 2026-11-19 Keep daily guidance on demand during evolution reviews"
+    - "4.1.1 2026-11-19 Preserve Chief of Staff project access boundaries during daily routing"
+    - "4.1.0 2026-11-19 Route daily requests by acceptance, scope and Supervisor adjudication"
+    - "4.0.0 2026-11-18 Add bounded daily operation, scoped small changes and project-specific learning; keep evolution read-only"
     - "3.7.0 2026-11-17 Align model routing and stable-prefix method with actual runtime boundaries"
-    - "3.6.0 2026-11-16 Apply the same operating method to CoS own outputs; portfolio observations remain permission-scoped and never authorize target operating actions"
-    - "3.5.0 2026-11-16 Clarified that reviews may be user- or event-triggered; queue recovery, lease reconciliation and health checks remain active when scheduled reviews are disabled"
-    - "3.4.0 2026-10-23 Written in English, the skills' source language (ROUND6, 0.46.0)"
-    - "3.3.1 2026-10-22 Clarified job results, service state changes and the time material was read; a service's last_at is not a health-check heartbeat"
-    - "3.3.0 2026-10-22 Tell paused, overdue and unknown apart by the current state; check the version in effect and actual delivery evidence"
-    - "3.2.0 2026-10-21 Check real output, references and data retention by the folder agreements in effect; old projects are checked by their actual structure and never cleaned up automatically"
-    - "3.1.0 2026-10-21 Added the operating basis in effect, document output, risk sampling and the hand-over of failure handling; stays read-only"
-    - "3.0.0 2026-10-17 Became an operating health checklist read on demand in reviews (ROUND4): the operate stage is only used for reviews, so the old skill was never actually loaded"
-    - "2.1.0 2026-10-16 Re-check scheduled jobs and services during operation (ROUND3 S3)"
 ---
 
-# Operating health check
+# Daily project work
 
-## Purpose
-A review answers two questions: did the last improvements work, and is the product itself running well. This checklist
-answers the second. It only gathers facts; conclusions and proposals go into the review's improvement proposal.
+## Purpose and boundaries
+Be the user's ongoing project partner. Each execution has a goal and an end; the project conversation continues through
+records, not a permanently active task. Kernel's current mode, stage and tools determine what is possible. A skill never
+grants permissions. In evolution only collect facts and propose improvements; do not apply this skill's execution branch.
+In ordinary full/quick delivery preserve the current gates. Operation mode is available only when Kernel explicitly enables it.
 
-## When to use it
-When the project has released or actually used products (scripts, jobs, services, reports, documents), check the items
-that apply before the review looks for problems. For pure documents check timeliness, completeness, delivery location and
-use, and mark the runtime items as not applicable; no registered jobs does not mean nothing is in operation. First read
-the released change entry point Kernel gives you with the matching requirements/design, implementation and review
-evidence, and confirm the agreements in effect together with the charter and the current product list. The latest
-incremental task is not the whole project; without a Kernel release record verify manual or outside delivery evidence,
-naming sources and unknowns — never invent an approval. Release, registration, enabling, successful runs and business
-effect are checked separately; gather facts read-only — never re-run jobs, restart or retire services, or change business
-files yourself.
+## Choose the work
+1. Answer a simple question directly with current evidence and its limits; no task just for conversation.
+2. For bounded investigation, data analysis or report production, use the operation task and its invocation workspace.
+3. For a maintained script or project skill change, prepare the short task_contract and exact operation_scope given by
+   the output contract. Continue through build, validation and the final release decision. Do not repeat settled requirements.
+4. Major behavior, permissions, migration, schedule, deployment or role changes need the standard flow. Preserve what is
+   already learned; only the missing decision needs clarification. An execution or publication receipt is not implied by a plan.
+5. New work while another task waits is separate; an unrelated question is not an answer or approval of the old card.
+
+## Route by acceptance in operation delivery
+State the user's intended result, the existing rule or approved example that decides correctness, and how to verify it.
+Use the bounded route when acceptance still applies, authority and affected targets are clear, and the result can be checked and a maintained change reversed. Effort alone does not decide the route.
+Clarify missing user intent with needs_input. For uncertain dependencies, disputed scope or changed goals, policy or acceptance, pause implementation. In operate request Supervisor adjudication with return_to_requirements. Record facts, unknowns and the proposed route in summary and working_notes. From build first return to operate. Supervisor can request investigation, retain the bounded route or propose full requirements. Follow the reachable stages Kernel actually offers.
+For example, restoring an amount already visible under approved access rules can be a bounded fix. Extending who may see that amount changes policy and needs requirements.
+
+## Execute and verify
+Read the charter, relevant project methods and current records only as needed. Identify the object/version, source,
+observation window and required output. For health investigations read references/health-check.md. Distinguish registered,
+running, successful output and useful business effect. Missing data is unknown, never a fabricated healthy status.
+For analysis record units, exclusions, sample and calculation checks; retain input references and reproducible scripts.
+Keep raw inputs, intermediate tables and user-facing outputs distinguishable. Do not put private notes into external reports.
+Use only the provided tools and writable workspace; do not bypass a denied tool with shell. Query/report authority is not
+permission to send, trade, restart, rerun, enable a job, read another project or change a model route.
+Check the requested result, not only exit status. For small code changes test a representative result plus failure/missing
+input and dependent behavior. If the scope changes return to operate for a new brief; do not silently widen the targets.
+Preserve incomplete work and unknown effects; retry only a known safe computation, not an uncertain external action.
+
+## Speech, image and video requests
+Read assistant-model-routing on demand. Use kernel_model_catalog to identify the capability, released project purpose,
+selected profile, provider setup and available adapter. Distinguish transcription, narration and video generation.
+For an existing purpose change, hand the purpose and target to Supervisor consultation. For a new capability or missing
+adapter, carry the requirements into standard delivery. Use the provider's official regional key instructions and a
+private model_setup card only when setup is missing. Never request a provider key in chat or as a project credential.
 
 ## Chief of Staff scope
 For a Chief of Staff project, apply this checklist to its own advice, documents and released routines. Observe other
@@ -45,54 +65,21 @@ effect. Name missing scopes and evidence; request further authorized evidence or
 Daily jobs and services remain that project's responsibility. Never read its folders, rerun jobs, restart services or change
 its files. Disabling scheduled CoS reviews does not disable Kernel queue recovery or released runtime maintenance.
 
-## Checklist (item by item; each problem becomes an F with its evidence)
-1. **Jobs**: from the registered state, planned times, last run and statistics, tell enabled, paused, retired, not yet
-   due, overdue or unknown apart; no run record is not by itself a failure. For repeated failures, missing results when a
-   run was due, or unusual durations, read the latest logs under `runs/jobs/<id>/` and verify the actual output.
-2. **Services**: check the registered state, state changes and alerts; `last_at` is the time of the last state change,
-   not a health-check heartbeat. It does not refresh while the state stays the same, so a long stable service may show an
-   old or empty value — that alone does not mean a check is overdue or something is wrong. A job's `last_at` is the time of
-   its last result; the material's `observed_at` is only when the database was read — neither replaces live health
-   evidence. Without live evidence say it is not verified and judge from the logs and receipts you have; read the end of
-   `runs/services/<id>.err.log` when needed — never invent a check time.
-3. **Is data and output on time**: by the success criteria in effect in the charter (for example "the daily report before
-   9:00"), check the output's timeliness, completeness, location and evidence of receipt; choose the window and samples by
-   the output's cycle, risk and recent changes, and state coverage and limits; with too few samples mark it to be
-   observed — never claim everything is fine from it.
-4. **Does anyone use it**: whether anyone reads or responds to the output (user messages in the channels, card actions);
-   for output nobody has used for long, ask the user in the proposal whether it is still needed.
-5. **User feedback**: this week's complaints, change requests and recurring topics (changes and rejections in the run
-   records).
-6. **Are the map and charter still right**: spot-check that key files listed in the map still exist and that the job list
-   matches jobs.yaml; a mismatch is a problem. Tell the charter's long-term agreements, the map's current index and runtime
-   receipts apart by assistant-task-continuity; for old projects without folder descriptions check the existing
-   configuration against the actual files — non-standard names or missing descriptions are not failures in themselves,
-   and the latest incremental list does not stand for the whole project. Check whether the output in focus reaches the
-   agreed location with the required timeliness and usability, and whether references still point to valid inputs;
-   periodic output can be sampled by folder — not every output needs its own map entry or release. Watch for persistent
-   data saved in scratch areas, half-finished output taken as final, unusual growth or leftovers against agreed retention;
-   record only the evidence and impact — never clean up, move, change the charter or set retention periods for the project
-   yourself. Necessary fixes go to follow-up tasks.
+## Learning and hand-over
+A repeated, evidenced method gap may justify a project-owned skill: read assistant-capability-maintenance on demand.
+First check existing methods. One-off facts belong in notes; reusable working methods belong in skills. Project methods
+retain their charter limits. Only Kernel maintains public templates, with authorized cross-project evidence.
+Kernel methods focus on source/runtime separation, tests and release evidence. CoS methods focus on decisions and advice
+in its own project; other projects retain execution. Trading research does not permit account actions; channel analysis
+does not permit publishing; an acceptance project keeps its charter's prohibited actions.
+Submit operation_report with goal, sources/time, assumptions, actions, results, verification, artifact references and
+limits/next steps. Keep working_notes sufficient for a fresh session. A report closes its task without changing the runtime
+baseline. A maintained change closes only after its approved release. Distinguish selected/discoverable/read/used/effective
+skill evidence; configuration metadata alone proves neither reading nor business benefit.
 
-## Output
-This checklist produces no document of its own: problems found go into the review's "problems found (F)", with the sources
-of the evidence (job id, log path, file path, date). Without data write "no data" — never guess. When handing a problem to
-the Supervisor, state the object/version, trigger, impact, evidence, the actual effect known, the next step and the
-recovery condition. Verify the version actually in use, any rollback or substitute and the applicable window — never hold
-old tasks to new rules; report fix verification, runtime recovery and business effect separately. Service registration or
-retirement is checked against the actual supervised configuration and processes — a database flag does not mean the
-action is done; Kernel retries approved but unfinished service configuration, you only check state and receipts, and
-persistent failures go to the maintainer — never work around unfinished handling by releasing again. Changes to the
-product go through follow-up tasks; when a release result is uncertain, check the receipt and the actual targets first —
-never blindly publish again or treat a cancelled task as an undone side effect.
-
-## Common mistakes
-- Taking "the job succeeded" as "all is well": a successful job does not mean correct output — sample the output.
-- Using counts instead of risk: a single data corruption, permission breach or failed key delivery must be handled too;
-  for ordinary occasional fluctuations state the impact and the basis of observation.
-
-## Model selection and prompt reuse
-For model-backed products, distinguish the configured profile, effective route and successful capability evidence.
-Evaluate quality, failure and known invocation costs; context occupancy and session totals are not per-call bills.
-A model-only change for an existing purpose goes through Supervisor consultation and its model-change card; adding a
-capability or migrating embedding indexes remains product work. Keep scheduled review switches unchanged.
+## Self-check
+- Did the delivered result answer the request with actual evidence and usable references?
+- Did permissions, project ownership and the current scope remain unchanged?
+- Are calculation/test results, missing inputs and unknown effects reported honestly?
+- Can another session continue from records without repeating questions or actions?
+- Is a proposed iteration justified by observed benefit, not a compulsory weekly ritual?
